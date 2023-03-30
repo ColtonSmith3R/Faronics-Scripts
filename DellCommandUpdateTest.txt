@@ -1,0 +1,24 @@
+@echo off
+cls
+
+tasklist | find /i "DellCommandUpdate.exe" && echo Closing existing Dell Command Update && taskkill /im DellCommandUpdate.exe /F
+SET file=S:\Downloads\DellCommandUpdate.msi
+if exist "C:\Program Files (x86)\Dell\CommandUpdate\dcu-cli.exe" goto:runDellUpdater
+if exist "%file%" goto:installDellUpdater
+
+echo Please navigate to the DellCommandUpdate.msi file
+set dialog="about:<input type=file id=FILE><script>FILE.click();new ActiveXObject
+set dialog=%dialog%('Scripting.FileSystemObject').GetStandardStream(1).WriteLine(FILE.value);
+set dialog=%dialog%close();resizeTo(0,0);</script>"
+for /f "tokens=* delims=" %%p in ('mshta.exe %dialog%') do set "file=%%p"
+
+:installDellUpdater
+echo Installing Dell Command Update app
+"%file%" /quiet
+
+:runDellUpdater
+echo Disabling Dell automatic updates
+REG ADD "HKLM\SOFTWARE\Dell\UpdateService\Clients\CommandUpdate\Preferences\Settings\Schedule" /v "ScheduleMode" /t REG_SZ /d "ManualUpdates" /f
+echo Running the Dell Command Update app
+"C:\Program Files (x86)\Dell\CommandUpdate\dcu-cli.exe" /ApplyUpdates
+pause
