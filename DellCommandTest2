@@ -1,17 +1,1 @@
-
-@echo off
-cls
-if exist "C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" goto:runDellUpdater
-
-echo Please navigate to the DellCommandUpdate.msi file
-set dialog="about:<input type=file id=FILE><script>FILE.click();new ActiveXObject
-set dialog=%dialog%('Scripting.FileSystemObject').GetStandardStream(1).WriteLine(FILE.value);
-set dialog=%dialog%close();resizeTo(0,0);</script>"
-for /f "tokens=* delims=" %%p in ('mshta.exe %dialog%') do set "file=%%p"
-
-:runDellUpdater
-echo Disabling Dell automatic updates
-REG ADD "HKLM\SOFTWARE\Dell\UpdateService\Clients\CommandUpdate\Preferences\Settings\Schedule" /v "ScheduleMode" /t REG_SZ /d "ManualUpdates" /f
-echo Running the Dell Command Update app
-"C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /ApplyUpdates
-pause
+"C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /ApplyUpdates -reboot=enable
