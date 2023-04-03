@@ -1,9 +1,6 @@
 
 @echo off
 cls
-
-tasklist | find /i "DellCommandUpdate.exe" && echo Closing existing Dell Command Update && taskkill /im DellCommandUpdate.exe /F
-SET file=S:\Downloads\DellCommandUpdate.msi
 if exist "C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" goto:runDellUpdater
 
 echo Please navigate to the DellCommandUpdate.msi file
