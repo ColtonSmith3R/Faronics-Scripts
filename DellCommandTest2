@@ -1,0 +1,7 @@
+@echo off
+TITLE Running DELL Command Update...
+REM Checks for updated DELL Drivers using DELL Command Update CLI
+
+"C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /configure -silent -autoSuspendBitLocker=enable -userConsent=disable
+"C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /scan -outputLog=C:\dell\logs\scan.log
+"C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /applyUpdates -reboot=disable -outputLog=C:\dell\logs\applyUpdates.log
