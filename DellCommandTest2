@@ -1,1 +1,1 @@
-"C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /ApplyUpdates -reboot=enable
+start cmd.exe /c "C:\Program Files\Dell\CommandUpdate\dcu-cli.exe" /ApplyUpdates -reboot=enable
