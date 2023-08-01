@@ -1,5 +1,7 @@
 @echo off
+
 echo Running Windows Update Troubleshooter...
 msdt.exe /id WindowsUpdateDiagnostic
+
 echo Windows Update Troubleshooter completed.
 pause
