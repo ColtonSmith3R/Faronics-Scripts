@@ -1,7 +1,11 @@
-@echo off
+# Run the Windows Update Troubleshooter
+function RunWindowsUpdateTroubleshooter {
+    $wuDiagID = "{BFE18E9C-6D87-4450-B37C-E02F0B373803}" # Troubleshooter ID for Windows Update
+    $wuDiagPath = "msdt.exe"
+    
+    Write-Host "Running Windows Update Troubleshooter..."
+    Start-Process -FilePath $wuDiagPath -ArgumentList "/id $wuDiagID" -Wait
+    Write-Host "Windows Update Troubleshooter completed."
+}
 
-echo Running Windows Update Troubleshooter...
-powershell.exe -command "Get-TroubleshootingPack -id  WindowsUpdateDiagnostic | Invoke-TroubleshootingPack"
-
-echo Windows Update Troubleshooter completed.
-pause
+RunWindowsUpdateTroubleshooter
