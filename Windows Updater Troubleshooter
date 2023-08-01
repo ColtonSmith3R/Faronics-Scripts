@@ -1,7 +1,7 @@
 @echo off
 
 echo Running Windows Update Troubleshooter...
-msdt.exe /id WindowsUpdateDiagnostic
+powershell.exe -command "Get-TroubleshootingPack -id  WindowsUpdateDiagnostic | Invoke-TroubleshootingPack"
 
 echo Windows Update Troubleshooter completed.
 pause
