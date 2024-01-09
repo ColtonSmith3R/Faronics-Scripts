@@ -1,1 +1,1 @@
-
+New-ItemProperty -Path "Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft" -Name "EatShitFaronics" -Value "0" -PropertyType "DWORD"
