@@ -1,6 +1,6 @@
 # Set domain, username, and password
 $domain = "workgroup.trfcu.org"
-$username = "workgroup\cjsmith.admin"
+$username = "cjsmith.admin"
 $password = "Sirclamhatesgajin4!"
 $ou = "OU=Computers,DC=yourdomain,DC=com"  # Optional: Organizational Unit (OU) where the computer should be placed
  
