@@ -1,21 +1,5 @@
-# Set domain, username, and password
 $domain = "workgroup.trfcu.org"
-$username = "cjsmith.admin"
-$password = "Sirclamhatesgajin4!"
-$ou = "OU=Computers,DC=workgroup.trfcu.org,DC=com"  # Optional: Organizational Unit (OU) where the computer should be placed
- 
-# Convert the password to a secure string
-$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
- 
-# Create a credential object
-$credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
-
-# Join the computer to the domain
-Add-Computer -workgroup.trfcu.org $domain -Credential workgroup.trfcu.org\cjsmith.admin -OUPath Computers -Restart
- 
-# Verify if the join was successful
-if ($?) {
-    Write-Host "The computer was successfully added to the domain."
-} else {
-    Write-Host "There was an error adding the computer to the domain."
-}
+$password = "Sirclamhatesgajin4!" | ConvertTo-SecureString -asPlainText -Force
+$username = "$domain\cjsmith.admin" 
+$credential = New-Object System.Management.Automation.PSCredential($username,$password)
+Add-Computer -DomainName $domain -Credential $credential -Restart
