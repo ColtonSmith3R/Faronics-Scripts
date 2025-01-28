@@ -9,9 +9,9 @@ $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
  
 # Create a credential object
 $credential = New-Object System.Management.Automation.PSCredential($username, $securePassword)
- 
+
 # Join the computer to the domain
-Add-Computer -workgroup.trfcu.org $domain -Credential $credential -OUPath $ou -Restart
+Add-Computer -workgroup.trfcu.org $domain -Credential workgroup.trfcu.org\cjsmith.admin -OUPath Computers -Restart
  
 # Verify if the join was successful
 if ($?) {
