@@ -1,5 +1,5 @@
 $domain = "workgroup.trfcu.org"
-$password = "" | ConvertTo-SecureString -asPlainText -Force
+$password = "Sirclamhatesgajin4!" | ConvertTo-SecureString -asPlainText -Force
 $username = "$domain\cjsmith.admin" 
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 Add-Computer -DomainName $domain -Credential $credential -Restart
