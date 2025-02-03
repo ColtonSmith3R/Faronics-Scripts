@@ -8,7 +8,7 @@ Add-LocalGroupMember -Group "Users" -Member $userName
 
 # Define your variables
 $domain = "workgroup.trfcu.org"  # Replace with your domain
-$ou = "OU=TRFCU,OU=Joined Computers,DC=workgroup,DC=trfcu,DC=org"  # Replace with your full Distinguished Name (DN) of the target OU
+$ou = "OU=Joined Computers,OU=TRFCU,DC=workgroup,DC=trfcu,DC=org"  # Replace with your full Distinguished Name (DN) of the target OU
 $username = "workgroup\cjsmith.admin"  # Replace with your domain admin username
 $password = ConvertTo-SecureString "Sirclamhatesgajin4!" -AsPlainText -Force  # Securely convert the password
 
