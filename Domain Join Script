@@ -6,10 +6,14 @@ Remove-LocalGroupMember -Group "Administrators" -Member $userName
 # Add the user to the Users group (optional but recommended)
 Add-LocalGroupMember -Group "Users" -Member $userName
 
+# Define your variables
+$domain = "workgroup.trfcu.org"  # Replace with your domain
+$ou = "OU=OU for testing GPO's,DC=workgroup,DC=trfcu,DC=org"  # Replace with your full Distinguished Name (DN) of the target OU
+$username = "workgroup\cjsmith.admin"  # Replace with your domain admin username
+$password = ConvertTo-SecureString "Sirclamhatesgajin4!" -AsPlainText -Force  # Securely convert the password
 
-$domain = "workgroup.trfcu.org"
-$password = "Sirclamhatesgajin4!" | ConvertTo-SecureString -asPlainText -Force
-$username = "$domain\cjsmith.admin" 
-$ou = "OU=OU for testing GPO's,DC=workgroup.trfcu.org,DC=org"
-$credential = New-Object System.Management.Automation.PSCredential($username,$password)
+# Create a credential object
+$credential = New-Object System.Management.Automation.PSCredential($username, $password)
+
+# Join the computer to the domain and specify the OU
 Add-Computer -DomainName $domain -Credential $credential -OUPath $ou -Restart
