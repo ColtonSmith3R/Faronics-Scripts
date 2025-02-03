@@ -1,5 +1,15 @@
+$userName = "User"
+
+# Remove the user from the Administrators group
+Remove-LocalGroupMember -Group "Administrators" -Member $userName
+
+# Add the user to the Users group (optional but recommended)
+Add-LocalGroupMember -Group "Users" -Member $userName
+
+
 $domain = "workgroup.trfcu.org"
 $password = "Sirclamhatesgajin4!" | ConvertTo-SecureString -asPlainText -Force
 $username = "$domain\cjsmith.admin" 
+$ou = "OU=OU for testing GPO's,DC=workgroup.trfcu.org,DC=org"
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
-Add-Computer -DomainName $domain -Credential $credential -Restart
+Add-Computer -DomainName $domain -Credential $credential -OUPath $ou -Restart
