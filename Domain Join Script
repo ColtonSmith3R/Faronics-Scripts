@@ -8,9 +8,9 @@ Add-LocalGroupMember -Group "Users" -Member $userName
 
 # Define your variables
 $domain = "workgroup.trfcu.org"  # Replace with your domain
-$ou = "OU=Joined Computers,OU=TRFCU,DC=workgroup,DC=trfcu,DC=org"  # Replace with your full Distinguished Name (DN) of the target OU
-$username = "workgroup\"  # Replace with your domain admin username
-$password = ConvertTo-SecureString "" -AsPlainText -Force  # Securely convert the password
+$ou = "OU=Joined Computers,DC=workgroup,DC=trfcu,DC=org"  # Replace with your full Distinguished Name (DN) of the target OU
+$username = "workgroup\cjsmith"  # Replace with your domain admin username
+$password = ConvertTo-SecureString "Sirclamlikestoplaytanks4!" -AsPlainText -Force  # Securely convert the password
 
 # Create a credential object
 $credential = New-Object System.Management.Automation.PSCredential($username, $password)
