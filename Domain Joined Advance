@@ -1,0 +1,22 @@
+# Import the credentials from the encrypted XML file
+$credential = Import-Clixml -Path "C:\File organizer\A Personal Documents for Work\GP.xml"
+
+# Extract the username and password from the credential object
+$username = $credential.UserName
+$password = $credential.GetNetworkCredential().Password
+
+# Remove the user from the Administrators group
+Remove-LocalGroupMember -Group "Administrators" -Member $username
+
+# Add the user to the Users group (optional but recommended)
+Add-LocalGroupMember -Group "Users" -Member $username
+
+# Define your domain and OU variables
+$domain = "workgroup.trfcu.org"  # Replace with your domain
+$ou = "OU=Joined Computers,OU=TRFCU,DC=workgroup,DC=trfcu,DC=org"  # Replace with your full Distinguished Name (DN) of the target OU
+
+# Create a credential object for domain join
+$domainCredential = New-Object System.Management.Automation.PSCredential($username, (ConvertTo-SecureString $password -AsPlainText -Force))
+
+# Join the computer to the domain and specify the OU
+Add-Computer -DomainName $domain -Credential $domainCredential -OUPath $ou -Restart
